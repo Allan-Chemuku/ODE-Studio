@@ -5,6 +5,7 @@ import SlopeField from "./components/SlopeField";
 import TopicDetails from "./components/TopicDetails";
 import InteractiveSolver from "./components/InteractiveSolver";
 import AITutorPanel from "./components/AITutorPanel";
+import { generatePDFReport } from "./utils/pdfGenerator";
 import { 
   BookOpen, 
   Activity, 
@@ -294,31 +295,44 @@ export default function App() {
               </div>
             </div>
 
-            {/* Navigation tabs */}
-            <div className="flex bg-[#0d131f] p-1 rounded-xl border border-slate-800 text-xs font-mono">
+            {/* Actions Block: Export Action + Tab controls */}
+            <div className="flex items-center gap-3.5 flex-wrap">
+              {/* Export Archival PDF Button */}
               <button
-                onClick={() => setActiveTab("laboratory")}
-                className={`flex items-center gap-1 px-4 py-1.5 rounded-lg transition ${
-                  activeTab === "laboratory"
-                    ? "bg-sky-500/15 text-sky-400 font-bold border border-sky-500/10"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
+                onClick={() => generatePDFReport(activeTopic, progress)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/25 cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-sky-500/5 active:scale-95"
+                title="Export Formatted Archival Study PDF of active derivation milestones and laboratory states"
               >
-                <Activity className="h-4 w-4 shrink-0" />
-                <span>🔬 Mathematics Lab</span>
+                <Download className="h-4 w-4 text-sky-400" />
+                <span>Export Report PDF</span>
               </button>
-              
-              <button
-                onClick={() => setActiveTab("derivation")}
-                className={`flex items-center gap-1 px-4 py-1.5 rounded-lg transition ${
-                  activeTab === "derivation"
-                    ? "bg-indigo-500/15 text-indigo-400 font-bold border border-indigo-500/10"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                <GraduationCap className="h-4 w-4 shrink-0" />
-                <span>🎓 Guided Derivation</span>
-              </button>
+
+              {/* Navigation tabs */}
+              <div className="flex bg-[#0d131f] p-1 rounded-xl border border-slate-800 text-xs font-mono">
+                <button
+                  onClick={() => setActiveTab("laboratory")}
+                  className={`flex items-center gap-1 px-4 py-1.5 rounded-lg transition ${
+                    activeTab === "laboratory"
+                      ? "bg-sky-500/15 text-sky-400 font-bold border border-sky-500/10"
+                      : "text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  <Activity className="h-4 w-4 shrink-0" />
+                  <span>🔬 Mathematics Lab</span>
+                </button>
+                
+                <button
+                  onClick={() => setActiveTab("derivation")}
+                  className={`flex items-center gap-1 px-4 py-1.5 rounded-lg transition ${
+                    activeTab === "derivation"
+                      ? "bg-indigo-500/15 text-indigo-400 font-bold border border-indigo-500/10"
+                      : "text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  <GraduationCap className="h-4 w-4 shrink-0" />
+                  <span>🎓 Guided Derivation</span>
+                </button>
+              </div>
             </div>
           </div>
 

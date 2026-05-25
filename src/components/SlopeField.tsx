@@ -216,6 +216,19 @@ export default function SlopeField() {
 
   const activeModel = PRESET_ODE_MODELS.find((m) => m.id === selectedModelId) || PRESET_ODE_MODELS[0];
 
+  useEffect(() => {
+    (window as any).__ode_lab_state = {
+      selectedModelId,
+      initialX,
+      initialY,
+      comparisonMode,
+      stepSize,
+      gridDensity,
+      modelName: activeModel.name,
+      modelFormula: activeModel.formula
+    };
+  }, [selectedModelId, initialX, initialY, comparisonMode, stepSize, gridDensity, activeModel]);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#090d16] p-4 rounded-2xl border border-slate-800 shadow-2xl">
       
@@ -233,6 +246,7 @@ export default function SlopeField() {
 
         <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-slate-800 bg-slate-950 select-none">
           <canvas
+            id="ode-slopefield-canvas"
             ref={canvasRef}
             className="w-full h-full cursor-crosshair block"
             onMouseDown={(e) => {
