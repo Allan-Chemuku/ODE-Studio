@@ -1,0 +1,6 @@
+{
+  "name": "Ordinary Differential Equations Workspace",
+  "description": "An offline-first AI-powered interactive workspace and tutoring system for learning Ordinary Differential Equations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
